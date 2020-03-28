@@ -1,0 +1,39 @@
+{
+  "ignition": {
+    "config": {
+      "replace": {
+        "source": null,
+        "verification": {}
+      }
+    },
+    "security": {
+      "tls": {}
+    },
+    "timeouts": {},
+    "version": "3.0.0"
+  },
+  "passwd": {
+    "users": [
+      {
+        "name": "core",
+        "sshAuthorizedKeys": [
+          "ecdsa-sha2-nistp521 AAAAE2VjZHNhLXNoYTItbmlzdHA1MjEAAAAIbmlzdHA1MjEAAACFBAAERB9KVuXNTXdcfKT8wkHGrekuDx4IDAKZW14dw9QPvdJ/COSV57I38DE5EnoxgSJXi7AWnaprIT/F4NzNmaB1pAFa3mNqwinz7tJ+GOecSQmAMIKA/YcuVEzk6bR+XQ2VRTYxrtAZAR0XFkBojF7HotoDHBZBUugjanR6ARCQIfSwKA== zbik@DelteZuluMac.local"
+        ]
+      },
+      {
+        "name": "postgres",
+        "uid": 102
+      }
+    ]
+  },
+  "storage": {},
+  "systemd": {
+    "units": [
+      {
+        "contents": "[Unit]\nDescription=OpenStreetMap\nAfter=network-online.target\nWants=network-online.target\n\n[Service]\nTimeoutStartSec=0\nExecStartPre=-/bin/podman kill osm\nExecStartPre=-/bin/podman rm osm\nExecStartPre=/bin/podman pull docker.io/darekzbik/osm:next \nExecStart=/bin/podman run --name osm -p 8080:80 -v db:/var/lib/postgresql/12/main:rw -v tiles:/var/lib/mod_tile -v logs:/var/log/tiles docker.io/darekzbik/osm:next\n\n[Install]\nWantedBy=multi-user.target\n",
+        "enabled": true,
+        "name": "osm.service"
+      }
+    ]
+  }
+}
