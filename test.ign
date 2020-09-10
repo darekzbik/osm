@@ -1,0 +1,35 @@
+{
+  "ignition": {
+    "config": {
+      "replace": {
+        "source": null,
+        "verification": {}
+      }
+    },
+    "security": {
+      "tls": {}
+    },
+    "timeouts": {},
+    "version": "3.0.0"
+  },
+  "passwd": {
+    "users": [
+      {
+        "name": "core",
+        "passwordHash": "$1$9C9j1DWf$nCGM4MeV07J0hdFHp3q7d0",
+        "sshAuthorizedKeys": [
+          "ecdsa-sha2-nistp521 AAAAE2VjZHNhLXNoYTItbmlzdHA1MjEAAAAIbmlzdHA1MjEAAACFBAAERB9KVuXNTXdcfKT8wkHGrekuDx4IDAKZW14dw9QPvdJ/COSV57I38DE5EnoxgSJXi7AWnaprIT/F4NzNmaB1pAFa3mNqwinz7tJ+GOecSQmAMIKA/YcuVEzk6bR+XQ2VRTYxrtAZAR0XFkBojF7HotoDHBZBUugjanR6ARCQIfSwKA== zbik@DelteZuluMac.local"
+        ]
+      },
+      {
+        "name": "postgres",
+        "uid": 102
+      }
+    ]
+  },
+  "storage": {},
+  "systemd": {
+    "units": [
+    ]
+  }
+}
